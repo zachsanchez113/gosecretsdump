@@ -17,3 +17,10 @@ venv*
 *.prof
 *.out
 /test/python/*
+
+
+vendor/*
+vendor/*go
+vendor/**go
+vendor/**.go
+vendor/**/*.go

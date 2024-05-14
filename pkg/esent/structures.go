@@ -28,30 +28,31 @@ type table struct {
 }
 
 /*
-func newTable(name string) table {
-	return table{
-		Name: name,
-		data: make(map[string]interface{}),
+	func newTable(name string) table {
+		return table{
+			Name: name,
+			data: make(map[string]interface{}),
+		}
 	}
-}
 
-func (t *table) AddColumn(s string) {
-	t.data[s] = nil
-	t.columns = append(t.columns, s)
-}
+	func (t *table) AddColumn(s string) {
+		t.data[s] = nil
+		t.columns = append(t.columns, s)
+	}
 
-func (t table) AddData(s string, v interface{}) {
-	t.data[s] = v
-}
+	func (t table) AddData(s string, v interface{}) {
+		t.data[s] = v
+	}
 
-func (t table) Columns() []string {
-	return t.columns
-}
+	func (t table) Columns() []string {
+		return t.columns
+	}
 
 func (t table) Get(s string) {
 
 }
-//*/
+//
+*/
 type esent_page_header struct {
 	CheckSum                     uint64
 	ECCCheckSum                  uint32
@@ -360,7 +361,7 @@ func (e *Esent_record) UnpackInline(column string, t columns_catalog_data_defini
 	r.UnpackInline(t)
 }
 
-//SetString sets the codepage of the specified column on the record, and marks the record as a 'string'
+// SetString sets the codepage of the specified column on the record, and marks the record as a 'string'
 func (e *Esent_record) SetString(column string, codePage uint32) error {
 	if e.column[column] == nil {
 		//this should probably be a proper error
@@ -464,8 +465,8 @@ func (e *Esent_record) GetNilRecord(column string) *esent_recordVal {
 	}
 }
 
-//alternative way of doing this (and probably better) would be casting everything back
-//to a byte array that can be cleanly printed.
+// alternative way of doing this (and probably better) would be casting everything back
+// to a byte array that can be cleanly printed.
 type esent_recordVal struct {
 	tupVal [][]byte
 	val    []byte
@@ -513,7 +514,7 @@ type esent_recordVal struct {
 	*/
 }
 
-//Data types possible in an esent database
+// Data types possible in an esent database
 const (
 	Byt recordTyp = iota
 	Tup

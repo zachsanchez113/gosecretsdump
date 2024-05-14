@@ -11,12 +11,11 @@ import (
 )
 
 type Dumper interface {
-	//New(string, string) (Dumper, error)
 	GetOutChan() <-chan ditreader.DumpedHash
 	Dump() error
 }
 
-type Settings struct {
+type CLIArgs struct {
 	SystemLoc   string
 	NTDSLoc     string
 	SAMLoc      string
@@ -29,7 +28,8 @@ type Settings struct {
 	History     bool
 }
 
-func GoSecretsDump(s Settings) error {
+// CLI entrypoint for Impacket's secretsdump functionality
+func GoSecretsDump(s CLIArgs) error {
 	var dr Dumper
 	var err error
 	if s.NTDSLoc != "" {
@@ -75,7 +75,7 @@ func GoSecretsDump(s Settings) error {
 	return e
 }
 
-func consoleWriter(val <-chan ditreader.DumpedHash, s Settings, wg *sync.WaitGroup) {
+func consoleWriter(val <-chan ditreader.DumpedHash, s CLIArgs, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for dh := range val {
 		if s.EnabledOnly {
@@ -117,7 +117,7 @@ func consoleWriter(val <-chan ditreader.DumpedHash, s Settings, wg *sync.WaitGro
 	}
 }
 
-func fileWriter(val <-chan ditreader.DumpedHash, s Settings, wg *sync.WaitGroup) {
+func fileWriter(val <-chan ditreader.DumpedHash, s CLIArgs, wg *sync.WaitGroup) {
 	defer wg.Done()
 	//build up the data to eventually write
 	hashes := strings.Builder{}
@@ -194,10 +194,9 @@ func fileWriter(val <-chan ditreader.DumpedHash, s Settings, wg *sync.WaitGroup)
 		defer krbfile.Close()
 		krbfile.WriteString(kerbs.String())
 	}
-
 }
 
-func fileStreamWriter(val <-chan ditreader.DumpedHash, s Settings, wg *sync.WaitGroup) {
+func fileStreamWriter(val <-chan ditreader.DumpedHash, s CLIArgs, wg *sync.WaitGroup) {
 	defer wg.Done()
 	file, err := os.OpenFile(s.Outfile, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0644)
 	if err != nil {

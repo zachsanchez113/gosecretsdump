@@ -11,7 +11,7 @@ import (
 
 //props to agsolino for doing the original impacket version of this. The file format is clearly a mindfuck, and it would not have been easy.
 
-//todo: update to handle massive files better (so we don't saturate memory too bad)
+// todo: update to handle massive files better (so we don't saturate memory too bad)
 type fileInMem struct {
 	//data  []byte
 	pages []*esent_page
@@ -49,7 +49,7 @@ func (e Esedb) Init(fn string) (Esedb, error) {
 	return r, err
 }
 
-//OpenTable opens a table, and returns a cursor pointing to the current parsing state
+// OpenTable opens a table, and returns a cursor pointing to the current parsing state
 func (e *Esedb) OpenTable(s string) (*Cursor, error) {
 	r := Cursor{} //this feels like it can be optimised
 
@@ -342,7 +342,7 @@ func (e *Esedb) loadPages(fn string) error {
 	return nil
 }
 
-//retreives a page of data from the file?
+// retreives a page of data from the file?
 func (e *Esedb) getPage(pageNum uint32) *esent_page {
 	//check cache
 	r := e.db.pages[pageNum+1]

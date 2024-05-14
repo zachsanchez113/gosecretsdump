@@ -8,7 +8,7 @@ type PeklistEnc struct {
 	EncryptedPek []byte // ":"
 }
 
-//NewPeklistEnc returns an encrypted peklist object from the passed in record
+// NewPeklistEnc returns an encrypted peklist object from the passed in record
 func NewPeklistEnc(lData []byte) (PeklistEnc, error) {
 	if len(lData) < 16 {
 		return PeklistEnc{}, fmt.Errorf("Invalid data size. Expecting 16, got %d", len(lData))
@@ -30,7 +30,7 @@ type PeklistPlain struct {
 	DecryptedPek []byte // ":"
 }
 
-//NewPeklistPlain returns a cleartext peklist object from the passed in record
+// NewPeklistPlain returns a cleartext peklist object from the passed in record
 func NewPeklistPlain(lData []byte) PeklistPlain {
 	r := PeklistPlain{}
 	//lData := make([]byte, len(data))
@@ -48,7 +48,7 @@ type PekKey struct {
 	Key     [16]byte
 }
 
-//NewPekKey returns a Pek key (the key portion of the PekKey structure)
+// NewPekKey returns a Pek key (the key portion of the PekKey structure)
 func NewPekKey(lData []byte) []byte {
 	//copy(r.Key[:], lData[4:20])
 	return lData[4:20]

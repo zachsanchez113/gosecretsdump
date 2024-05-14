@@ -13,7 +13,7 @@ import (
 	"github.com/C-Sto/gosecretsdump/pkg/esent"
 )
 
-//New Creates a new dit dumper
+// Create a new DitReader
 func New(system, ntds string) (DitReader, error) {
 	r := DitReader{
 		isRemote:           false,
@@ -88,7 +88,7 @@ func (d *DitReader) dump() {
 	d.Dump()
 }
 
-//GetOutChan returns a reference to the objects output channel for read only operations
+// GetOutChan returns a reference to the objects output channel for read only operations
 func (d DitReader) GetOutChan() <-chan DumpedHash {
 	return d.userData
 }

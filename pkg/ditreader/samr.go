@@ -7,8 +7,9 @@ import (
 	"strings"
 )
 
-type SAMRUserProperties struct { /*
-			# 2.2.10.1 USER_PROPERTIES
+type SAMRUserProperties struct {
+	/*
+		# 2.2.10.1 USER_PROPERTIES
 		class USER_PROPERTIES(Structure):
 			structure = (
 				('Reserved1','<L=0'), L = 4 bytes (uint32)
@@ -19,7 +20,8 @@ type SAMRUserProperties struct { /*
 				('PropertySignature','<H=0x50'),
 				('PropertyCount','<H=0'),
 				('UserProperties',':'),
-		)*/
+			)
+	*/
 	Reserved1         uint32
 	Length            uint32
 	Reserved2         uint16
@@ -132,7 +134,7 @@ type SAMRUserProperty struct {
 		        ('PropertyName',':'),
 		        ('_PropertyValue','_-PropertyValue', "self['ValueLength']"),
 		        ('PropertyValue',':'),
-		)
+				)
 	*/
 	NameLength    uint16
 	ValueLength   uint16

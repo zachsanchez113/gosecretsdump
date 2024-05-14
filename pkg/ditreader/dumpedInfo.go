@@ -18,7 +18,7 @@ type uacFlags struct {
 	PartialSecrets bool
 }
 
-//https://stackoverflow.com/questions/53069040/checking-a-string-contains-only-ascii-characters
+// https://stackoverflow.com/questions/53069040/checking-a-string-contains-only-ascii-characters
 func isASCII(s string) bool {
 	for i := 0; i < len(s); i++ {
 		if s[i] > u.MaxASCII {
@@ -28,8 +28,8 @@ func isASCII(s string) bool {
 	return true
 }
 
-//whoa this is a dumb way of doing it,
-//but I've had too many rums to think of the actual way
+// whoa this is a dumb way of doing it,
+// but I've had too many rums to think of the actual way
 func decodeUAC(val int) uacFlags {
 	r := uacFlags{}
 	r.Script = val|1 == val
@@ -76,14 +76,15 @@ func (s SuppInfo) KerbString() string {
 }
 
 type DumpedHash struct {
-	Username string
-	LMHash   []byte
-	NTHash   []byte
-	Rid      uint32
-	Enabled  bool
-	UAC      uacFlags
-	Supp     SuppInfo
-	History  PwdHistory
+	Username   string
+	LMHash     []byte
+	NTHash     []byte
+	Rid        uint32
+	Enabled    bool
+	UAC        uacFlags
+	Supp       SuppInfo
+	History    PwdHistory
+	JsonString string
 }
 
 type PwdHistory struct {
